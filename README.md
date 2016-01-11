@@ -23,6 +23,8 @@ cordova.plugins.motionActivity.startActivity
 <code>
   window.cordova.plugins.motionActivity.startActivity(function success(readings) {
     console.log(JSON.stringify(readings));
+    // sample output
+    // { 'confidence': 2, 'unknown'; 0, 'stationary': 1, 'walking': 0, 'running': 0, 'cycling': 0, 'automotive': 0 }
   }, function(error){
     console.log(error);
   })
