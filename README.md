@@ -31,6 +31,9 @@ cordova.plugins.motionActivity.startActivity
 </code>
 </pre>
 
+cordova.plugins.motionActivity.stopActivity
+-----------------------------------
+
 <pre>
 <code>
   window.cordova.plugins.motionActivity.stopActivity(function success() {
