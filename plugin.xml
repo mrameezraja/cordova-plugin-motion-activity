@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-motion-activity" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>cordova-plugin-motion-activity</name>
+    <description>A Cordova plugin that detects and watch motion API</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova, motion activity detection</keywords>
+    
+    <js-module name="motionActivity" src="www/motion-activity.js">
+        <clobbers target="cordova.plugins.motionActivity" />
+    </js-module>
+    
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+    
+    <!-- android -->
+    <platform name="android">
+      
+    </platform>
+    
+    <!-- ios -->
+    <platform name="ios">      
+        <config-file parent="/*" target="config.xml">
+            <feature name="MotionActivitySensor">
+                <param name="ios-package" value="MotionActivitySensor"/>
+            </feature>
+        </config-file>
+        
+        <header-file src="src/ios/MotionActivitySensor.h"/>
+        <source-file src="src/ios/MotionActivitySensor.m"/>
+
+        <framework src="CoreMotion.framework"/>
+    </platform>
+    
+</plugin>
