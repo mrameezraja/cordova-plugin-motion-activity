@@ -1,5 +1,5 @@
 //
-//  MotionActivitySensor.m
+//  MotionActivity.m
 //  ActivityDetectionTest
 //
 //  Created by Rameez Raja on 1/11/16.
@@ -7,21 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MotionActivitySensor.h"
+#import "MotionActivity.h"
 #import <CoreMotion/CoreMotion.h>
 
 
-@interface MotionActivitySensor ()
+@interface MotionActivity ()
 
     @property (nonatomic, retain) CMMotionActivityManager* motionActivityManager;
 
 @end
 
-@implementation MotionActivitySensor
+@implementation MotionActivity
 
-- (void)startActivity:(CDVInvokedUrlCommand*)command
+- (void)requestUpdates:(CDVInvokedUrlCommand*)command
 {
-    NSLog(@"startActivity");
+    NSLog(@"requestUpdates");
     /*if([CMMotionActivityManager isActivityAvailable]) {
         CMMotionActivityManager *cm = [[CMMotionActivityManager alloc] init];
         CMStepCounter *sc = [[CMStepCounter alloc] init];
@@ -38,7 +38,7 @@
                 if (a.walking) motion = [motion stringByAppendingString:@"walking "];
                 if (a.running) motion = [motion stringByAppendingString:@"running "];
                 if (a.automotive) motion = [motion stringByAppendingString:@"automotive "];
-                
+
                 // Now get steps as well
                 [sc queryStepCountStartingFrom:a.startDate to:[[activities objectAtIndex:i+1] startDate] toQueue:[NSOperationQueue mainQueue] withHandler:^(NSInteger numberOfSteps, NSError *error) {
                     NSLog(@"%@ confidence %@ type %@ steps %ld", [NSDateFormatter localizedStringFromDate:a.startDate dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterShortStyle], confidence, motion, numberOfSteps);
@@ -49,17 +49,17 @@
 
 
     BOOL isActivityAvailable =  [CMMotionActivityManager isActivityAvailable];
-    
+
     NSLog(@"isActivityAvailable %d", isActivityAvailable);
-    
+
     if(isActivityAvailable)
     {
         _motionActivityManager = [[CMMotionActivityManager alloc] init];
         CMStepCounter *sc = [[CMStepCounter alloc] init];
-        
+
         [self.commandDelegate runInBackground:^{
             [_motionActivityManager startActivityUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMMotionActivity *activity) {
-                
+
                 /*NSLog(@"Got a core motion update");
                 NSLog(@"Current activity date is %f",activity.timestamp);
                 NSLog(@"Current activity confidence from a scale of 0 to 2 - 2 being best- is: %ld", (long)activity.confidence);
@@ -69,7 +69,7 @@
                 NSLog(@"Current activity type is running: %i",activity.running);
                 NSLog(@"Current activity type is cycling: %i",activity.cycling);
                 NSLog(@"Current activity type is automotive: %i",activity.automotive);*/
-                
+
                 NSMutableDictionary *jsonObj = [[NSMutableDictionary alloc] init];
                 [jsonObj setValue: [NSString stringWithFormat:@"%ld", activity.confidence] forKey:@"confidence"];
                 [jsonObj setValue: [NSString stringWithFormat:@"%d", activity.unknown] forKey:@"unknown"];
@@ -78,8 +78,8 @@
                 [jsonObj setValue: [NSString stringWithFormat:@"%d", activity.running] forKey:@"running"];
                 [jsonObj setValue: [NSString stringWithFormat:@"%d", activity.cycling] forKey:@"cycling"];
                 [jsonObj setValue: [NSString stringWithFormat:@"%d", activity.automotive] forKey:@"automotive"];
-                
-                
+
+
                 /*NSString *confidence = @"low";
                 if (activity.confidence == CMMotionActivityConfidenceMedium) confidence = @"medium";
                 if (activity.confidence == CMMotionActivityConfidenceHigh) confidence = @"high";
@@ -88,7 +88,7 @@
                 if (activity.walking) motion = [motion stringByAppendingString:@"walking"];
                 if (activity.running) motion = [motion stringByAppendingString:@"running"];
                 if (activity.automotive) motion = [motion stringByAppendingString:@"automotive"];
-                
+
                 // Now get steps as well
                 [sc startStepCountingUpdatesToQueue:[NSOperationQueue new] updateOn:1 withHandler:^(NSInteger numberOfSteps, NSDate *timestamp, NSError *error)
                  {
@@ -96,11 +96,11 @@
                          NSLog(@"numberOfSteps %ld", (long)numberOfSteps);
                      }];
                 }];*/
-    
-                
+
+
                 CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:jsonObj];
                 [result setKeepCallbackAsBool:1];
-                
+
                 [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
             }];
         }];
@@ -115,7 +115,7 @@
 - (void)stopActivity:(CDVInvokedUrlCommand*)command
 {
     NSLog(@"stopActivity");
-    
+
     BOOL isActivityAvailable =  [CMMotionActivityManager isActivityAvailable];
 
     if(isActivityAvailable){

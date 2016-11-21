@@ -3,11 +3,11 @@ var exec = require('cordova/exec');
 var MotionActivity = function() { }
 
 MotionActivity.prototype = {
-  startActivity: function(success, error, options){
-    exec(success, error, "MotionActivitySensor", "startActivity", [])
+  requestUpdates: function(success, error, options){
+    exec(success, error, "MotionActivity", "requestUpdates", [])
   },
-  stopActivity: function(success, error, options){
-    exec(success, error, "MotionActivitySensor", "stopActivity", [])
+  stop: function(success, error, options){
+    exec(success, error, "MotionActivity", "stopActivity", [])
   }
 }
 

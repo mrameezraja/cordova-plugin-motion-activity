@@ -1,5 +1,5 @@
 //
-//  MotionActivitySensor.h
+//  MotionActivity.h
 //  ActivityDetectionTest
 //
 //  Created by Rameez Raja on 1/11/16.
@@ -8,9 +8,9 @@
 
 #import <Cordova/CDVPlugin.h>
 
-@interface MotionActivitySensor : CDVPlugin
+@interface MotionActivity : CDVPlugin
 
-- (void)startActivity:(CDVInvokedUrlCommand*)command;
+- (void)requestUpdates:(CDVInvokedUrlCommand*)command;
 - (void)stopActivity:(CDVInvokedUrlCommand*)command;
 
 @end

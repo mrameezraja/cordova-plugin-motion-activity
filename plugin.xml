@@ -4,32 +4,32 @@
     <description>A Cordova plugin that detects and watch motion API</description>
     <license>Apache 2.0</license>
     <keywords>cordova, motion activity detection</keywords>
-    
+
     <js-module name="motionActivity" src="www/motion-activity.js">
         <clobbers target="cordova.plugins.motionActivity" />
     </js-module>
-    
+
     <engines>
         <engine name="cordova" version=">=3.0.0" />
     </engines>
-    
+
     <!-- android -->
     <platform name="android">
-      
+
     </platform>
-    
+
     <!-- ios -->
-    <platform name="ios">      
+    <platform name="ios">
         <config-file parent="/*" target="config.xml">
-            <feature name="MotionActivitySensor">
-                <param name="ios-package" value="MotionActivitySensor"/>
+            <feature name="MotionActivity">
+                <param name="ios-package" value="MotionActivity"/>
             </feature>
         </config-file>
-        
-        <header-file src="src/ios/MotionActivitySensor.h"/>
-        <source-file src="src/ios/MotionActivitySensor.m"/>
+
+        <header-file src="src/ios/MotionActivity.h"/>
+        <source-file src="src/ios/MotionActivity.m"/>
 
         <framework src="CoreMotion.framework"/>
     </platform>
-    
+
 </plugin>
