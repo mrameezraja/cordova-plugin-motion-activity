@@ -79,7 +79,6 @@
                 [jsonObj setValue: [NSString stringWithFormat:@"%d", activity.cycling] forKey:@"cycling"];
                 [jsonObj setValue: [NSString stringWithFormat:@"%d", activity.automotive] forKey:@"automotive"];
 
-
                 /*NSString *confidence = @"low";
                 if (activity.confidence == CMMotionActivityConfidenceMedium) confidence = @"medium";
                 if (activity.confidence == CMMotionActivityConfidenceHigh) confidence = @"high";
