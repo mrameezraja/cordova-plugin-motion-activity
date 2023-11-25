@@ -1,0 +1,33 @@
+{
+  "name": "cordova-plugin-motion-activity",
+  "version": "0.0.1",
+  "description": "A Cordova plugin that detects and watch motion API",
+  "cordova": {
+    "id": "cordova-plugin-motion-activity",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrameezraja/cordova-plugin-motion-activity.git"
+  },
+  "keywords": [
+    "cordova",
+    "motion activity detection",
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "Rameez Raja",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/mrameezraja/cordova-plugin-motion-activity/issues"
+  },
+  "homepage": "https://github.com/mrameezraja/cordova-plugin-motion-activity#readme"
+}
